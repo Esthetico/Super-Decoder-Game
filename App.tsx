@@ -4,6 +4,7 @@ import { GameState, Guess } from './types';
 import { CODE_LENGTH, COLORS, MAX_GUESSES } from './constants';
 import Board from './components/Board';
 import { generateSecretCode, checkGuess } from './services/gameLogic';
+import { playSelectSound, playDeleteSound, playConfirmSound, playWinSound, playLoseSound, playNewGameSound } from './services/audioService';
 
 const App: React.FC = () => {
   const [secretCode, setSecretCode] = useState<string[]>([]);
@@ -18,17 +19,27 @@ const App: React.FC = () => {
     setCurrentGuess([]);
     setGameState(GameState.Playing);
     setActiveRow(0);
+    playNewGameSound();
   }, []);
 
   useEffect(() => {
     startNewGame();
   }, [startNewGame]);
 
+  useEffect(() => {
+    if (gameState === GameState.Won) {
+      playWinSound();
+    } else if (gameState === GameState.Lost) {
+      playLoseSound();
+    }
+  }, [gameState]);
+
   const handleColorSelect = (color: string) => {
     if (gameState !== GameState.Playing || currentGuess.length >= CODE_LENGTH) {
       return;
     }
     setCurrentGuess(prev => [...prev, color]);
+    playSelectSound();
   };
 
   const handleDelete = () => {
@@ -36,12 +47,14 @@ const App: React.FC = () => {
       return;
     }
     setCurrentGuess(prev => prev.slice(0, -1));
+    playDeleteSound();
   };
   
   const handleConfirm = () => {
     if (gameState !== GameState.Playing || currentGuess.length < CODE_LENGTH) {
       return;
     }
+    playConfirmSound();
 
     const feedback = checkGuess(currentGuess, secretCode);
     const newGuess: Guess = { combination: currentGuess, feedback };
