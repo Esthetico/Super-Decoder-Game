@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { GameState, Guess } from '../types';
 import { MAX_GUESSES } from '../constants';
@@ -24,7 +23,7 @@ const DigitalDisplay: React.FC<{ value: number }> = ({ value }) => {
     const text = String(value).padStart(3, '0');
     return (
         <div className="bg-black/80 p-2 rounded-md shadow-inner">
-            <p className="text-3xl sm:text-4xl text-red-500/90" style={{ textShadow: '0 0 5px #ef4444' }}>
+            <p className="font-['Chakra_Petch',_sans-serif] text-4xl sm:text-5xl text-red-500/90" style={{ textShadow: '0 0 5px #ef4444' }}>
                 {text}
             </p>
         </div>
@@ -69,13 +68,13 @@ const Board: React.FC<BoardProps> = ({
       <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-14 h-4 bg-gray-700 rounded-b-md"></div>
 
       {/* Main Casing */}
-      <div className="w-full max-w-sm sm:max-w-md bg-gradient-to-b from-[#4a4a4a] to-[#2b2b2b] p-2 sm:p-3 rounded-2xl shadow-[0_10px_0_#1a1a1a,0_15px_25px_rgba(0,0,0,0.6)]">
+      <div className="w-full max-w-sm sm:max-w-md bg-gradient-to-b from-[#98ce3d] to-[#78a52e] p-2 sm:p-3 rounded-2xl shadow-[0_10px_0_#54731f,0_15px_25px_rgba(0,0,0,0.6)]">
         <div className="bg-[#414141] p-1 sm:p-2 rounded-xl shadow-inner">
             <div className="bg-[#2d2d2d] p-2 sm:p-3 rounded-lg shadow-[inset_0_5px_15px_rgba(0,0,0,0.5)]">
                 {/* Screen Area */}
                 <SecretCodeDisplay secretCode={secretCode} revealed={gameState !== GameState.Playing} />
                 <div className="my-1 h-[2px] bg-black/30" />
-                <div className="space-y-1">
+                <div className="grid gap-2">
                   {guessRows}
                 </div>
                  <Controls onUndo={onDelete} onSubmit={onConfirm} />
@@ -88,7 +87,7 @@ const Board: React.FC<BoardProps> = ({
         
         {/* Bottom Section */}
         <div className="mt-2 sm:mt-3 p-1 sm:p-2 flex items-center justify-between gap-3">
-             <p className="flex-1 text-center text-3xl font-black text-gray-800/60" style={{ textShadow: '1px 1px 1px rgba(255,255,255,0.2)'}}>
+             <p className="flex-1 text-center text-3xl font-black text-gray-200/90" style={{ textShadow: '1px 1px 1px rgba(0,0,0,0.3)'}}>
                 GIIKER
             </p>
 

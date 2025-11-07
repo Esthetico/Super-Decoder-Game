@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Feedback } from '../types';
 import { CODE_LENGTH } from '../constants';
@@ -21,8 +20,8 @@ const GuessRow: React.FC<GuessRowProps> = ({ guess, feedback, currentGuess, isAc
   });
 
   return (
-    <div className={`flex items-center justify-between px-2 py-1 rounded-lg transition-all duration-300`}>
-      <div className="flex items-center space-x-2">
+    <div className={`grid grid-cols-[1fr_auto] items-center gap-2 px-2 py-1 rounded-lg transition-all duration-300`}>
+      <div className="grid grid-cols-4 gap-2">
         {pegHoles}
       </div>
       <FeedbackPegDisplay feedback={feedback} />
