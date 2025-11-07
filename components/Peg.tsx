@@ -7,9 +7,10 @@ interface PegProps {
   onClick?: () => void;
   isGreyButton?: boolean;
   children?: React.ReactNode;
+  disabled?: boolean;
 }
 
-const Peg: React.FC<PegProps> = ({ color, isSelectable = false, onClick, isGreyButton = false, children }) => {
+const Peg: React.FC<PegProps> = ({ color, isSelectable = false, onClick, isGreyButton = false, children, disabled = false }) => {
   const hexColorMap: { [key: string]: string } = {
     'bg-red-500': '#ef4444',
     'bg-orange-500': '#f97316',
@@ -23,7 +24,8 @@ const Peg: React.FC<PegProps> = ({ color, isSelectable = false, onClick, isGreyB
     return (
         <button 
             onClick={onClick}
-            className={`w-16 h-10 sm:w-20 sm:h-11 flex items-center justify-center rounded-md bg-gradient-to-b from-gray-700 to-gray-800 text-gray-300 font-bold text-xs sm:text-sm shadow-[0_4px_0_#222,0_5px_5px_#111] active:shadow-[0_2px_0_#222,0_3px_3px_#111] active:translate-y-px transition-all duration-100`}
+            disabled={disabled}
+            className={`w-16 h-10 sm:w-20 sm:h-11 flex items-center justify-center rounded-md bg-gradient-to-b from-gray-700 to-gray-800 text-gray-300 font-bold text-xs sm:text-sm shadow-[0_4px_0_#222,0_5px_5px_#111] transition-all duration-100 ${disabled ? 'opacity-50 cursor-not-allowed' : 'active:shadow-[0_2px_0_#222,0_3px_3px_#111] active:translate-y-px'}`}
         >
             {children}
         </button>

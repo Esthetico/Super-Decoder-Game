@@ -110,3 +110,8 @@ export const playNewGameSound = () => {
   oscillator.start(audioContext.currentTime);
   oscillator.stop(audioContext.currentTime + 0.2);
 };
+
+export const playTickSound = () => {
+  initAudioContext();
+  playTone(1200, 0.02, 'square');
+};

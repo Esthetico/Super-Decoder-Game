@@ -9,8 +9,12 @@ export interface Guess {
   feedback: Feedback;
 }
 
-export enum GameState {
+export enum RoundState {
   Playing = 'playing',
   Won = 'won',
   Lost = 'lost'
 }
+
+export type GameMode = 'single' | 'twoPlayer';
+
+export type Player = 1 | 2;
