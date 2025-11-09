@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { RoundState, Guess, GameMode, Player } from '../types';
 import { MAX_GUESSES } from '../constants';

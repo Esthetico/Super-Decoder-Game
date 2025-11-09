@@ -15,8 +15,8 @@ const Controls: React.FC<ControlsProps> = ({ onUndo, onSubmit, isSetupPhase, gam
   const confirmText = gameMode === 'twoPlayer' && isSetupPhase ? 'START' : 'CONFIRM';
   return (
     <div className="flex justify-center items-center space-x-4 pt-3">
-        <Peg isGreyButton={true} onClick={onUndo}>DELETE</Peg>
-        <Peg isGreyButton={true} onClick={onSubmit} disabled={isSubmitDisabled}>{confirmText}</Peg>
+        <Peg isGreyButton={true} buttonStyle="secondary" onClick={onUndo}>DELETE</Peg>
+        <Peg isGreyButton={true} buttonStyle="primary" onClick={onSubmit} disabled={isSubmitDisabled}>{confirmText}</Peg>
     </div>
   );
 };

@@ -17,8 +17,29 @@
   }
 }
 </script>
+<style>
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+</style>
 </head>
-  <body class="bg-[#343a40]" style="background-image: radial-gradient(circle, #5a6268 0%, #212529 100%);">
+  <body>
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden bg-black" style="z-index: -2;">
+        <div id="blob-1" class="absolute w-[35rem] h-[35rem] bg-green-500/30 rounded-full -top-40 -left-40 filter blur-3xl"></div>
+        <div id="blob-2" class="absolute w-[35rem] h-[35rem] bg-yellow-500/30 rounded-full -bottom-40 right-20 filter blur-3xl"></div>
+        <div id="blob-3" class="absolute w-[30rem] h-[30rem] bg-red-500/30 rounded-full -bottom-20 -left-20 filter blur-3xl"></div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

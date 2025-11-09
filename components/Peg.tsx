@@ -8,9 +8,10 @@ interface PegProps {
   isGreyButton?: boolean;
   children?: React.ReactNode;
   disabled?: boolean;
+  buttonStyle?: 'primary' | 'secondary';
 }
 
-const Peg: React.FC<PegProps> = ({ color, isSelectable = false, onClick, isGreyButton = false, children, disabled = false }) => {
+const Peg: React.FC<PegProps> = ({ color, isSelectable = false, onClick, isGreyButton = false, children, disabled = false, buttonStyle = 'secondary' }) => {
   const hexColorMap: { [key: string]: string } = {
     'bg-red-500': '#ef4444',
     'bg-orange-500': '#f97316',
@@ -21,11 +22,17 @@ const Peg: React.FC<PegProps> = ({ color, isSelectable = false, onClick, isGreyB
   };
 
   if (isGreyButton) {
+    const styles = {
+      primary: 'from-orange-600 to-orange-700 text-white shadow-[0_4px_0_#9a3412,0_5px_5px_#111] active:shadow-[0_2px_0_#9a3412,0_3px_3px_#111]',
+      secondary: 'from-zinc-700 to-zinc-800 text-zinc-300 shadow-[0_4px_0_#18181b,0_5px_5px_#111] active:shadow-[0_2px_0_#18181b,0_3px_3px_#111]'
+    };
+    const selectedStyle = buttonStyle === 'primary' ? styles.primary : styles.secondary;
+    
     return (
         <button 
             onClick={onClick}
             disabled={disabled}
-            className={`w-16 h-10 sm:w-20 sm:h-11 flex items-center justify-center rounded-md bg-gradient-to-b from-gray-700 to-gray-800 text-gray-300 font-bold text-xs sm:text-sm shadow-[0_4px_0_#222,0_5px_5px_#111] transition-all duration-100 ${disabled ? 'opacity-50 cursor-not-allowed' : 'active:shadow-[0_2px_0_#222,0_3px_3px_#111] active:translate-y-px'}`}
+            className={`w-16 h-10 sm:w-20 sm:h-11 flex items-center justify-center rounded-md bg-gradient-to-b font-bold text-xs sm:text-sm transition-all duration-100 ${selectedStyle} ${disabled ? 'opacity-50 cursor-not-allowed' : 'active:translate-y-px'}`}
         >
             {children}
         </button>
